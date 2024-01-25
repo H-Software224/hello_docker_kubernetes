@@ -1,0 +1,21 @@
+두 개의 이미지 docker hub tag url
+
+mysql: https://hub.docker.com/layers/computerdreams/k8s/mysql/images/sha256-7a87b1f652852d467b9c654c47da7415d0ec77ac5e4e7a7deb5411b628b2ed07?context=repo
+
+web: https://hub.docker.com/layers/computerdreams/k8s/web/images/sha256-7ab2fc7a5d63ee6ca98f71a7f40e34e720e6360a8e0d1cf70ebf3399d408efd6?context=repo
+
+우선, 위에 tag에 있는 docker hub를 생성시킨 Dockerfile을 다시 assignment1을 매개로 변형시켜서 다시 만들었습니다. 명령어는 다음과 같다.
+
+$ minikube start
+$ kubectl apply -f node-deployment.yml,mysql-deployment.yml
+$ kubectl get all
+$ minikube service web (그 후 다시 관리자로 Powershell이나 bash 창(터미널)을 하나 더 생성한다.)
+
+이를 통해서 아이템을 추가, 제거할 수 있다. 
+
+$ kubectl exec --stdin --tty <mysql pod id> -- mysql -u root -p (root로 접근하는 것이므로  pod로 접근하는 것이 차단될 수도 있습니다.)
+
+비밀번호 : secret으로 입력합니다.
+mysql> SHOW DATABASES;
+
+DATABASE에 todos라는 데이터베이스 생성된다는 것을 알 수 있습니다.
